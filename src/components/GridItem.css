@@ -1,0 +1,34 @@
+.grid-item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.grid-item:active,
+.grid-item.pressed {
+  transform: scale(0.95);
+}
+
+.grid-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Убираем highlight на touch устройствах */
+.grid-item * {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
