@@ -1,0 +1,253 @@
+.app {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+
+.grid-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  gap: 0;
+  padding: 0;
+}
+
+/* Адаптивный грид для ~10 элементов */
+/* Мобильные устройства (портретная ориентация) */
+@media (max-aspect-ratio: 1/1) and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+
+/* Планшеты (портретная ориентация) */
+@media (max-aspect-ratio: 4/3) and (min-width: 769px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+}
+
+/* Планшеты (альбомная ориентация) и десктоп */
+@media (min-aspect-ratio: 4/3) {
+  .grid-container {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+/* Широкие экраны */
+@media (min-aspect-ratio: 16/9) and (min-width: 1400px) {
+  .grid-container {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal-content {
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-code-image {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Анимации для модального окна */
+
+/* 1. Flip 3D */
+.animation-flip {
+  animation: flip3d 0.6s ease-in-out;
+}
+
+@keyframes flip3d {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: perspective(1000px) rotateY(90deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: perspective(1000px) rotateY(180deg);
+    opacity: 1;
+  }
+}
+
+/* 2. Zoom & Fade */
+.animation-zoom-fade {
+  animation: zoomFade 0.5s ease-out;
+}
+
+@keyframes zoomFade {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 3. Slide Up */
+.animation-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 4. Ripple Expand */
+.animation-ripple {
+  animation: ripple 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  50% {
+    opacity: 0.8;
+    border-radius: 30%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    border-radius: 0%;
+  }
+}
+
+/* 5. Rotate & Scale */
+.animation-rotate-scale {
+  animation: rotateScale 0.7s ease-in-out;
+}
+
+@keyframes rotateScale {
+  0% {
+    transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 6. Grid Split */
+.animation-grid-split {
+  animation: gridSplit 0.6s ease-out;
+}
+
+@keyframes gridSplit {
+  0% {
+    clip-path: inset(50% 50% 50% 50%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0% 0% 0% 0%);
+    opacity: 1;
+  }
+}
+
+/* 7. Fade Cross */
+.animation-fade-cross {
+  animation: fadeCross 0.5s ease-in-out;
+}
+
+@keyframes fadeCross {
+  0% {
+    opacity: 0;
+    filter: brightness(0.3);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+/* 8. Bounce Scale */
+.animation-bounce-scale {
+  animation: bounceScale 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes bounceScale {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 9. Diagonal Wipe */
+.animation-diagonal-wipe {
+  animation: diagonalWipe 0.6s ease-out;
+}
+
+@keyframes diagonalWipe {
+  0% {
+    clip-path: polygon(0 0, 0 0, 0 100%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+
+/* 10. Blur & Focus */
+.animation-blur-focus {
+  animation: blurFocus 0.7s ease-out;
+}
+
+@keyframes blurFocus {
+  0% {
+    filter: blur(20px);
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
