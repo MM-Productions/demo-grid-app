@@ -1,83 +1,164 @@
 .app {
   width: 100%;
-  height: 100%;
-  background-color: #000;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  /* Animated gradient background - faster and more vivid */
+  background: linear-gradient(-45deg, #0a0a0a, #2d1b4e, #1a2f5c, #1e3a3a, #4a1942, #1f1f4d);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .grid-container {
   width: 100%;
-  height: 100%;
   display: grid;
-  gap: 0;
-  padding: 0;
+  gap: 20px;
+  padding: 20px;
+  margin: 0;
 }
 
-/* Адаптивный грид для ~10 элементов */
-/* Мобильные устройства (портретная ориентация) */
-@media (max-aspect-ratio: 1/1) and (max-width: 768px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-  }
-}
-
-/* Планшеты (портретная ориентация) */
-@media (max-aspect-ratio: 4/3) and (min-width: 769px) {
-  .grid-container {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-  }
-}
-
-/* Планшеты (альбомная ориентация) и десктоп */
-@media (min-aspect-ratio: 4/3) {
-  .grid-container {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
-}
-
-/* Широкие экраны */
-@media (min-aspect-ratio: 16/9) and (min-width: 1400px) {
-  .grid-container {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
-}
-
-/* Modal overlay */
-.modal-overlay {
+/* Fullscreen prompt */
+.fullscreen-prompt-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fullscreen-prompt {
+  background: linear-gradient(135deg, rgba(45, 27, 78, 0.95), rgba(26, 47, 92, 0.95));
+  border: 2px solid rgba(100, 100, 255, 0.3);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+              0 0 40px rgba(100, 100, 255, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.fullscreen-prompt h2 {
+  color: #ffffff;
+  font-size: 28px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.fullscreen-prompt p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 0 0 30px 0;
+  line-height: 1.5;
+}
+
+.fullscreen-prompt-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.fullscreen-btn {
+  padding: 15px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
 }
 
-.modal-content {
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.fullscreen-btn.primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
-.qr-code-image {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  user-select: none;
-  -webkit-user-drag: none;
+.fullscreen-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
 }
 
-/* Анимации для модального окна */
+.fullscreen-btn.primary:active {
+  transform: translateY(0);
+}
+
+.fullscreen-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fullscreen-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.fullscreen-btn.secondary:active {
+  transform: translateY(0);
+}
+
+/* Грид для ВЕРТИКАЛЬНЫХ картинок с вертикальным скроллом (максимум 3 колонки) */
+/* Мобильные устройства - 2 колонки */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
+}
+
+/* Десктоп - 3 колонки */
+@media (min-width: 769px) {
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: auto;
+  }
+}
+
+/* Анимации для переключения на QR код */
 
 /* 1. Flip 3D */
 .animation-flip {
