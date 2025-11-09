@@ -2,67 +2,65 @@ import { useState } from 'react'
 import './App.css'
 import GridItem from './components/GridItem'
 
-// Здесь будут ваши изображения
-// После добавления картинок, обновите пути
 const gridItems = [
   {
     id: 1,
-    image: '/src/assets/images/image1.jpg',
-    qrCode: '/src/assets/qrcodes/qr1.png',
+    image: '/assets/images/1.jpeg',
+    qrCode: '/assets/qrcodes/1.png',
     animation: 'flip'
   },
   {
     id: 2,
-    image: '/src/assets/images/image2.jpg',
-    qrCode: '/src/assets/qrcodes/qr2.png',
+    image: '/assets/images/2.jpg',
+    qrCode: '/assets/qrcodes/2.png',
     animation: 'zoom-fade'
   },
   {
     id: 3,
-    image: '/src/assets/images/image3.jpg',
-    qrCode: '/src/assets/qrcodes/qr3.png',
+    image: '/assets/images/3.jpeg',
+    qrCode: '/assets/qrcodes/3.png',
     animation: 'slide-up'
   },
   {
     id: 4,
-    image: '/src/assets/images/image4.jpg',
-    qrCode: '/src/assets/qrcodes/qr4.png',
+    image: '/assets/images/4.jpg',
+    qrCode: '/assets/qrcodes/4.png',
     animation: 'ripple'
   },
   {
     id: 5,
-    image: '/src/assets/images/image5.jpg',
-    qrCode: '/src/assets/qrcodes/qr5.png',
+    image: '/assets/images/5.jpeg',
+    qrCode: '/assets/qrcodes/5.png',
     animation: 'rotate-scale'
   },
   {
     id: 6,
-    image: '/src/assets/images/image6.jpg',
-    qrCode: '/src/assets/qrcodes/qr6.png',
+    image: '/assets/images/6.jpeg',
+    qrCode: '/assets/qrcodes/6.png',
     animation: 'grid-split'
   },
   {
     id: 7,
-    image: '/src/assets/images/image7.jpg',
-    qrCode: '/src/assets/qrcodes/qr7.png',
+    image: '/assets/images/7.jpg',
+    qrCode: '/assets/qrcodes/7.png',
     animation: 'fade-cross'
   },
   {
     id: 8,
-    image: '/src/assets/images/image8.jpg',
-    qrCode: '/src/assets/qrcodes/qr8.png',
+    image: '/assets/images/8.jpg',
+    qrCode: '/assets/qrcodes/8.png',
     animation: 'bounce-scale'
   },
   {
     id: 9,
-    image: '/src/assets/images/image9.jpg',
-    qrCode: '/src/assets/qrcodes/qr9.png',
+    image: '/assets/images/9.jpg',
+    qrCode: '/assets/qrcodes/9.png',
     animation: 'diagonal-wipe'
   },
   {
     id: 10,
-    image: '/src/assets/images/image10.jpg',
-    qrCode: '/src/assets/qrcodes/qr10.png',
+    image: '/assets/images/10.jpg',
+    qrCode: '/assets/qrcodes/10.png',
     animation: 'blur-focus'
   },
 ]
